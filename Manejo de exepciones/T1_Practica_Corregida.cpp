@@ -92,9 +92,9 @@ int main() {
     } catch (const std::invalid_argument& l){
         std::cout << "Error: " << l.what() << std::endl;
     } 
-    
+
+    // PROBLEMA 5: Raíz cuadrada de negativo
     try {
-        // PROBLEMA 5: Raíz cuadrada de negativo
         std::cout << "\n--- Prueba 5: Raíces cuadradas ---" << std::endl;
         double raiz1 = calcularRaiz(16);
         std::cout << "Raíz de 16 = " << raiz1 << std::endl;
@@ -104,23 +104,26 @@ int main() {
     } catch(const std::out_of_range& o){
         std::cout << "Error: " << o.what() << std::endl;
     } 
-    
+
+    // PROBLEMA 6: Longitud de contraseña
     try {
-        // PROBLEMA 6: Longitud de contraseña
         std::cout << "\n--- Prueba 6: Crear contraseñas ---" << std::endl;
         crearPassword(12);
         crearPassword(5);        // ¡ERROR!
         crearPassword(150);      // ¡ERROR!
     } catch(const std::invalid_argument& i){
-        
+        std::cout << "Error: " << i.what() << std::endl;
     }
-    
+
+    // PROBLEMA 7: String fuera de rango
     try {
-        // PROBLEMA 7: String fuera de rango
+        char let;
         std::cout << "\n--- Prueba 7: Acceso a string ---" << std::endl;
         std::string palabra = "Hola";
-        std::cout << "Carácter en posición 1: " << palabra.at(1) << std::endl;
-        std::cout << "Carácter en posición 20: " << palabra.at(20) << std::endl;  // ¡ERROR!
+        let = palabra.at(1);
+        std::cout << "Carácter en posición 1: " << let << std::endl;
+        let = palabra.at(20);
+        std::cout << "Carácter en posición 20: " << let << std::endl;  // ¡ERROR!
     } catch(const std::out_of_range& o){
         std::cout << "Error: " << o.what() << std::endl;
     }
