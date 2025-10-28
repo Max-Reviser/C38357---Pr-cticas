@@ -4,11 +4,10 @@
 using namespace std;
 
 class Documento {
-    
-
-    public:
     char* text;
     long textSiz;
+
+    public:
         Documento(char* v, long size){
             text = v;
             textSiz = size;
@@ -16,6 +15,14 @@ class Documento {
 
         ~Documento(){
             delete[] text;
+        }
+
+        char* getText() const {
+            return text;
+        }
+
+        long getTextSiz () const {
+            return textSiz;
         }
 
         friend ostream& operator<<(ostream& os, const Documento d){
@@ -37,17 +44,16 @@ class Documento {
                 }
 
                 Iterator& operator++(){
-                    cout << *currPos << d->text + d->textSiz << endl;
-                    // cout << "h\n";
+                    // cout << *currPos << " " << endl;
+                    // cout << "i\n";
                     
                     while (currPos < (d->text + d->textSiz) && isalnum(char(tolower(*currPos)))){
-                        
-                        // cout << "i\n";
+                        // cout << "j\n";
                         currPos++;
                     }
 
                     while (currPos < (d->text + d->textSiz) && !isalnum(char(tolower(*currPos)))){
-                        // cout << "j\n";
+                        // cout << "k\n";
                         currPos++;
                     }
 
@@ -55,47 +61,39 @@ class Documento {
                 }
 
                 char* operator*(){
-                    cout << "e\n";
+                    // cout << "e\n";
+                    int leng = 0, count = 0;
+                    while (!isalnum(char(tolower(*currPos)))){
+                        // cout << "f " << *currPos << endl << endl;
+                        currPos++;
+                    }
+
                     char* temp = currPos;
-                    int leng = 0;
-                    while ((temp < d->text + d->textSiz && isalnum(char(tolower(*currPos))))){
-                        cout << "h\n";
+                    while ((temp < d->text + d->textSiz && isalnum(char(tolower(*temp))))){
+                        // cout << "g " << *temp << endl << endl;
                         leng++;
                         temp++;
-
-                        /*
-                        if ((char(tolower(*temp)) >= 'a' && char(tolower(*temp)) <= 'z') || (*temp >= '0' && *temp <= '9')){
-                            cout << "g\n";
-                            reqWord[count] = char(tolower(*temp));
-                            cout << reqWord[count] << " " << count << endl;
-                            count++;
-                            
-                        } else {
-                            reqWord[count] = '\0';
-                        }
-                        */
                     }
 
                     char* reqWord = new char[leng + 1]; 
                     temp = currPos;
-                    int count = 0;
                     while (count < leng){
-                        cout << "g\n";
-                        cout << char(tolower(*temp)) << "\n";
+                        // cout << "h " << char(tolower(*temp)) << endl;
                         reqWord[count] = char(tolower(*temp));
-                        cout << reqWord[count] << " " << count << endl;
+                        // cout << reqWord[count] << " " << count << endl << endl;
                         count++;
                         temp++;
                     }
 
                     reqWord[leng] = '\0';
+                    // cout << reqWord << endl;
                     return reqWord;
                 }
 
                 bool operator!=(const Iterator& i){
-                    cout << "d\n";
+                    // cout << "d\n";
                     return this->currPos != i.currPos;
-                }
+                } 
         };
 
         Iterator begin(){
@@ -108,16 +106,21 @@ class Documento {
             return Iterator(text + textSiz, this);
         }
 };
-
+/*
 int main(){
-    Documento* doc = new Documento((char*) "!Mira eso! !Es Coraje!  Ese es un perro cobarde muy divertido... !Ahhhh!...! !A mi no me gusta ! A mi me gusta Mafalda :) A mi me da igual porque no me agradan las caricaturas", 171);
-    cout << doc->text << endl << doc->textSiz << endl;
+    Documento* doc = new Documento((char*) "!Mira eso! !Es Coraje!  Ese es un perro cobarde muy divertido... !Ahhhh!...! !A mi no me gusta ! A mi me gusta Mafalda :) A mi me da igual porque no me agradan las caricaturas", 175);
+    cout << doc->getText() << endl << doc->getTextSiz() << endl;
+    int count = 0;
     for (Documento::Iterator it = doc->begin(); it != doc->end(); ++it){
         char* word = *it;
-        cout << word << " a\n";
+        cout << word << " ";
         delete[] word;
+        count++;
+        // cout << count << endl << endl;
     }
 
+    cout << "Fin del programa.\n";
     delete doc;
     return 0;
 }
+*/
