@@ -16,25 +16,28 @@ class Vocabulario {
         }
 
         void addWord(const Palabra& p){
-            cout << p.getWord() << " e\n";
+            //cout << p.getWord() << " e\n";
             Nodo* novo = new Nodo(p);
             if (!this->head){
-                cout << "f\n";
+                cout << "primera\n";
                 head = novo;
                 cout << head->word.getWord();
                 return;
             } 
-
+            
             Nodo* currNod = this->head;
-            cout << currNod->word.getWord() << endl;
+            // cout << "g\n";
+            // cout << currNod->word.getWord() << endl;
             while (currNod->next){
-                // cout << "g\n";
+                cout << endl << currNod->word.getWord() << " g\n";
                 currNod = currNod->next;
             }
 
             currNod->next = novo;
-            cout << currNod->word.getWord() << endl;
-            cout << currNod->next->word.getWord();
+            // cout << head->word.getWord() << endl;
+            // cout << "h\n";
+            // cout << currNod->word.getWord() << endl;
+            // cout << currNod->next->word.getWord();
         }
 
         bool wordComparator(Nodo* node, char* comWord){
@@ -58,6 +61,7 @@ class Vocabulario {
 
         friend ostream& operator<<(ostream& os, const Vocabulario& v){
             Nodo* currNod = v.head;
+            cout << endl << currNod->word.getWord() << endl;
             int i = 0;
             while (currNod){
                 os << i << " " << currNod->word;
@@ -73,14 +77,14 @@ class Vocabulario {
 int main(){
     Documento* doc = new Documento((char*) "!Mira eso! !Es Coraje!  Ese es un perro cobarde muy divertido... !Ahhhh!...! !A mi no me gusta ! A mi me gusta Mafalda :) A mi me da igual porque no me agradan las caricaturas", 175);
     Vocabulario vocab;
-    cout << doc->getText() << endl << doc->getTextSiz() << endl;
+    //cout << doc->getText() << endl << doc->getTextSiz() << endl;
     for (Documento::Iterator it = doc->begin(); it != doc->end(); ++it){
         char* word = *it;
-        // cout << *vocab << endl << "z\n";
+        //cout << *word << endl << "z\n";
         Palabra newWord(word);
         vocab.addWord(newWord);
         // cout << vocab << endl;
-        cout << " z\n";
+        //cout << " z\n";
     }
 
     cout << vocab << endl;

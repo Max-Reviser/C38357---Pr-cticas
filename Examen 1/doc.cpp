@@ -13,9 +13,9 @@ class Documento {
             textSiz = size;
         }
 
-        ~Documento(){
+        /*~Documento(){
             delete[] text;
-        }
+        }*/
 
         char* getText() const {
             return text;
@@ -97,12 +97,12 @@ class Documento {
         };
 
         Iterator begin(){
-            cout << "b\n";
+            // cout << "b\n";
             return Iterator(text, this);
         }
 
         Iterator end(){
-            cout << "c\n";
+            // cout << "c\n";
             return Iterator(text + textSiz, this);
         }
 };
@@ -114,12 +114,12 @@ int main(){
     for (Documento::Iterator it = doc->begin(); it != doc->end(); ++it){
         char* word = *it;
         cout << word << " ";
-        delete[] word;
+        delete word;
         count++;
         // cout << count << endl << endl;
     }
 
-    cout << "Fin del programa.\n";
+    cout << "\nFin del programa.\n";
     delete doc;
     return 0;
 }

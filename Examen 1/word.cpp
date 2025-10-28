@@ -9,7 +9,7 @@ class Palabra {
 
     public:
         Palabra(char* w){
-            cout << "d\n";
+            // cout << "d\n";
             int leng = 0;
             while(w[leng] != '\0'){
                 leng++;
@@ -22,7 +22,7 @@ class Palabra {
 
             word[leng] = '\0';
 
-            cout << endl;
+            // cout << endl;
             worAmou = 1;
         }
 
